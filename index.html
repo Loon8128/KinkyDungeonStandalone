@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html style="width:100%; height:100%; padding:0px; margin:0px;">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta charset="UTF-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<title>Bondage Club</title>
+	<link rel="icon" type="image/png" href="Icons/Logo.png" id="favicon">
+    <link rel="stylesheet" href="Bondage-Club/BondageClub/CSS/Styles.css">
+	<script src="Bondage-Club/BondageClub/Scripts/lib/webgl/resources/m4.js"></script>
+	<script src="Bondage-Club/BondageClub/Scripts/lib/LZString.js"></script>
+	<script src="Bondage-Club/BondageClub/Scripts/lib/socket.io/socket.io.min.js"></script>
+	<script async src="Bondage-Club/BondageClub/Scripts/lib/jquery-3.2.1.min.js"></script>
+</head>
+
+<script src="Bondage-Club/BondageClub/Backgrounds/Backgrounds.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/GLDraw.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Common.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/CommonDraw.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Animation.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Mouse.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Drawing.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Timer.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/AfkTimer.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/GameLog.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Reputation.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Skill.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Character.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/CharacterName.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/ColorPicker.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/ControllerSupport.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Struggle.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Dialog.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Speech.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Text.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Inventory.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Import.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Asset.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Audio.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/MiniGame.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/NPC.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Validation.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Server.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Element.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Translation.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Activity.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/ExtendedItem.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/ModularItem.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/TypedItem.js"></script>
+<script src="src/common-shim.js"></script> <!-- Needs to be before ItemColor.js -->
+<script src="Bondage-Club/BondageClub/Screens/Character/ItemColor/ItemColor.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/VibratorMode.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/DynamicDraw.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Notification.js"></script>
+<script src="Bondage-Club/BondageClub/Scripts/Graph.js"></script>
+<script src="Bondage-Club/BondageClub/Assets/Female3DCG/Female3DCG.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/Futuristic/Futuristic.js"></script>
+<script src="Bondage-Club/BondageClub/Assets/Female3DCG/Female3DCGExtended.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/Login/Login.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/Appearance/Appearance.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/Disclaimer/Disclaimer.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/Creation/Creation.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/InformationSheet/InformationSheet.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/OnlineProfile/OnlineProfile.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/Preference/Preference.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/Wardrobe/Wardrobe.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/Cheat/Cheat.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/PasswordReset/PasswordReset.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/FriendList/FriendList.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/Title/Title.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/BackgroundSelection/BackgroundSelection.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Character/Relog/Relog.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Online/Game/OnlineGame.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNipples/VibeNippleClamp/VibeNippleClamp.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNipplesPiercings/VibeHeartPiercings/VibeHeartPiercings.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemVulvaPiercings/VibeHeartClitPiercing/VibeHeartClitPiercing.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemVulvaPiercings/TapedClitEgg/TapedClitEgg.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeck/ShockCollar/ShockCollar.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeck/AutoShockCollar/AutoShockCollar.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeckAccessories/CollarShockUnit/CollarShockUnit.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeckAccessories/CollarAutoShockUnit/CollarAutoShockUnit.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemArms/HempRope/HempRope.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemArms/HempRope/HempRopeSuspensionHogtied.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemHands/PaddedMittens/PaddedMittens.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemHands/PawMittens/PawMittens.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/MetalPadlock/MetalPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/IntricatePadlock/IntricatePadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/TimerPadlock/TimerPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/CombinationPadlock/CombinationPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/HighSecurityPadlock/HighSecurityPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/PasswordPadlock/PasswordPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/SafewordPadlock/SafewordPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/TimerPasswordPadlock/TimerPasswordPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/MistressTimerPadlock/MistressTimerPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/OwnerTimerPadlock/OwnerTimerPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/OwnerPadlock/OwnerPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/LoversPadlock/LoversPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/LoversTimerPadlock/LoversTimerPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/MistressPadlock/MistressPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/PandoraPadlock/PandoraPadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/ExclusivePadlock/ExclusivePadlock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMouth/FuturisticPanelGag/FuturisticPanelGag.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMouth/FuturisticHarnessPanelGag/FuturisticHarnessPanelGag.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMouth/FuturisticHarnessBallGag/FuturisticHarnessBallGag.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeck/FuturisticCollar/FuturisticCollar.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemTorso/FuturisticHarness/FuturisticHarness.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemHands/SpankingToys/SpankingToy.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemFeet/HempRope/HempRope.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemPelvis/LoveChastityBelt/LoveChastityBelt.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeckAccessories/CollarNameTag/CollarNameTag.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeckAccessories/CollarNameTagOval/CollarNameTagOval.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeckAccessories/CollarNameTagPet/CollarNameTagPet.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeckAccessories/CollarNameTagLover/CollarNameTagLover.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeckAccessories/CollarNameTagLivestock/CollarNameTagLivestock.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeck/SlaveCollar/SlaveCollar.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemButt/VibratingButtplug/VibratingButtplug.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNipples/TapedVibeEggs/TapedVibeEggs.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemVulva/InflatableVibeDildo/InflatableVibeDildo.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemVulva/LoversVibrator/LoversVibrator.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemButt/InflVibeButtPlug/InflVibeButtPlug.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemDevices/Sybian/Sybian.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemButt/AnalBeads2/AnalBeads2.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemButt/VibratingDildoPlug/VibratingDildoPlug.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemButt/LockingVibePlug/LockingVibePlug.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemArms/FullLatexSuit/FullLatexSuit.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemVulva/FuturisticVibrator/FuturisticVibrator.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemDevices/Locker/Locker.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemDevices/PetBowl/PetBowl.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemDevices/SmallLocker/SmallLocker.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemVulva/ClitAndDildoVibratorbelt/ClitAndDildoVibratorbelt.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemFeet/SpreaderVibratingDildoBar/SpreaderVibratingDildoBar.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemPelvis/FuturisticChastityBelt/FuturisticChastityBelt.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemPelvis/FuturisticTrainingBelt/FuturisticTrainingBelt.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemPelvis/SciFiPleasurePanties/SciFiPleasurePanties.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemBreast/FuturisticBra/FuturisticBra.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemButt/ShockPlug/ShockPlug.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemVulva/ShockDildo/ShockDildo.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNipples/ShockClamps/ShockClamps.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemButt/BunnyTailVibePlug/BunnyTailVibePlug.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemButt/EggVibePlugXXL/EggVibePlugXXL.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemArms/PrisonLockdownSuit/PrisonLockdownSuit.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeckAccessories/CustomCollarTag/CustomCollarTag.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeckAccessories/ElectronicTag/ElectronicTag.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemLegs/MermaidTail/MermaidTail.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemDevices/Kennel/Kennel.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemMisc/WoodenSign/WoodenSign.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemHood/CanvasHood/CanvasHood.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemDevices/WoodenBox/WoodenBox.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemDevices/TransportWoodenBox/TransportWoodenBox.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemDevices/FuturisticCrate/FuturisticCrate.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemDevices/DollBox/DollBox.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/HairAccessory3/Halo/Halo.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/HairAccessory1/Halo/Halo.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemArms/TransportJacket/TransportJacket.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeon.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonGame.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonParams.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonVision.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonLoot.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonStats.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonEnemies.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonRestraints.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonFight.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonHUD.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonDraw.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonMagic.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonShrine.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonItem.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonDress.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonConsumables.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonInventory.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonMultiplayer.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonLore.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonCurse.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonReputation.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonTraps.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonPathfinding.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonBuffs.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/MiniGame/KinkyDungeon/KinkyDungeonEvents.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemDevices/VacBedDeluxe/VacBedDeluxe.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemDevices/FuckMachine/FuckMachine.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ClothAccessory/Bib/Bib.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/Wings/SteampunkWings/SteampunkWings.js"></script>
+<script src="Bondage-Club/BondageClub/Screens/Inventory/ItemNeck/TechnoCollar/TechnoCollar.js"></script>
+
+<script src="src/shim.js"></script>
+
+<script>
+
+// When the code is loaded, we start the game engine
+window.onload = function() {
+    ShimMain();
+};
+
+/**
+ * Main game running state, runs the drawing
+ * @param {number} Timestamp
+ */
+function MainRun(Timestamp) {
+	DrawProcess(Timestamp);
+	TimerProcess(Timestamp);
+}
+
+/**
+ * When the user presses a key, we send the KeyDown event to the current screen if it can accept it
+ * @param {KeyboardEvent} event
+ */
+function KeyDown(event) {
+	if (event.repeat) return;
+	KeyPress = event.keyCode || event.which;
+	CommonKeyDown(event);
+}
+
+/**
+ * Handler for document-wide keydown event
+ * @param {KeyboardEvent} event
+ */
+function DocumentKeyDown(event) {
+	if (event.repeat) return;
+	if (event.key == "Escape") {
+		if (CurrentScreenFunctions.Exit) {
+			CurrentScreenFunctions.Exit();
+		} else if ((CurrentCharacter != null) && Array.isArray(DialogMenuButton) && (DialogMenuButton.indexOf("Exit") >= 0)) {
+			if (!DialogLeaveFocusItem())
+				DialogLeaveItemMenu();
+		} else if ((CurrentCharacter != null) && (CurrentScreen == "ChatRoom")) {
+			DialogLeave();
+		} else if ((CurrentCharacter == null) && (CurrentScreen == "ChatRoom") && (document.getElementById("TextAreaChatLog") != null)) {
+			ElementScrollToEnd("TextAreaChatLog");
+		}
+	} else if (event.key == "Tab") {
+		KeyDown(event);
+	}
+}
+
+/**
+ * When the user clicks, we fire the click event for other screens
+ * @param {MouseEvent} event
+ */
+function Click(event) {
+	if (!CommonIsMobile) {
+		MouseMove(event);
+		CommonClick(event);
+	}
+}
+
+/**
+ * When the user touches the screen (mobile only), we fire the click event for other screens
+ * @param {TouchEvent} event
+ */
+function TouchStart(event) {
+	if (CommonIsMobile && MainCanvas) {
+		TouchMove(event.touches[0]);
+		CommonClick(event);
+	}
+}
+
+/**
+ * When touch moves, we keep it's position for other scripts
+ * @param {Touch} touch
+ */
+function TouchMove(touch) {
+	if (MainCanvas) {
+		MouseX = Math.round((touch.pageX - MainCanvas.canvas.offsetLeft) * 2000 / MainCanvas.canvas.clientWidth);
+		MouseY = Math.round((touch.pageY - MainCanvas.canvas.offsetTop) * 1000 / MainCanvas.canvas.clientHeight);
+	}
+}
+
+/**
+ * When mouse move, we keep the mouse position for other scripts
+ * @param {MouseEvent} event
+ */
+function MouseMove(event) {
+	if (MainCanvas) {
+		MouseX = Math.round(event.offsetX * 2000 / MainCanvas.canvas.clientWidth);
+		MouseY = Math.round(event.offsetY * 1000 / MainCanvas.canvas.clientHeight);
+	}
+}
+
+/**
+ * When the mouse is away from the control, we stop keeping the coordinates,
+ * we also check for false positives with "relatedTarget"
+ * @param {MouseEvent} event
+ */
+function LoseFocus(event) {
+	if (event.relatedTarget || event.toElement) {
+		MouseX = -1;
+		MouseY = -1;
+	}
+}
+
+</script>
+
+<div id="axes" style="display: flex; flex-direction: column;"></div>
+<script>
+    if (ControllerActive == true) {
+        window.addEventListener('gamepadconnected', (event) => {
+            const update = () => {
+                const output = document.getElementById('axes');
+                output.innerHTML = '';
+
+                for (const gamepad of navigator.getGamepads()) {
+                    if (!gamepad) continue;
+                    for (const [index, axis] of gamepad.axes.entries()) {
+                        ControllerAxis(gamepad.axes);
+                    }
+                }
+                requestAnimationFrame(update);
+            };
+            update();
+        });
+    }
+</script>
+<div id="buttons" style="display: flex; flex-direction: column;"></div>
+<script>
+    if (ControllerActive == true) {
+        window.addEventListener('gamepadconnected', (event) => {
+            const update = () => {
+                const output = document.getElementById('buttons');
+                output.innerHTML = '';
+
+                for (const gamepad of navigator.getGamepads()) {
+                    if (!gamepad) continue;
+                    for (const [index, button] of gamepad.buttons.entries()) {
+                        ControllerButton(gamepad.buttons);
+                    }
+                }
+                requestAnimationFrame(update);
+            };
+            update();
+        });
+    }
+</script>
+
+<body style="width:100%; height:100%; background-color:black; margin:0px; padding:0px; overflow:hidden;">
+	<canvas id="MainCanvas" Width="2000" Height="1000" onClick="Click(event);" onTouchStart="TouchStart(event);" onMouseMove="MouseMove(event);" onMouseLeave="LoseFocus(event);"></canvas>
+</body>
+</html>
