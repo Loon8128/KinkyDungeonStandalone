@@ -73,6 +73,8 @@ KinkyDungeonMainClick = () => {};
 TimerPrivateOwnerBeep = () => {};
 
 ServerSend = () => {};
+ServerPrivateCharacterSync = () => {};
+ServerPlayerIsInChatRoom = () => false;
 ServerAccountUpdate = {
     SyncToServer: () => {},
     QueueData: () => {}
@@ -86,13 +88,6 @@ ChatRoomCharacterUpdate = () => {};
 ChatRoomCharacterItemUpdate = () => {};
 
 AsylumGGTSControlItem = () => false;
-/*
-_InventoryExpressionTriggerApply = InventoryExpressionTriggerApply
-InventoryExpressionTriggerApply = function(C, expressions) {
-    if (typeof C.OnlineSharedSettings === 'undefined') C.OnlineSharedSettings = {};
-    if (typeof C.OnlineSharedSettings.ItemsAffectExpressions === 'undefined') C.OnlineSharedSettings.ItemsAffectExpressions = true;
-    _InventoryExpressionTriggerApply(C, expressions);
-}*/
 
 ArcadeKinkyDungeonEnd = () => {
     console.log('End? Really?');
