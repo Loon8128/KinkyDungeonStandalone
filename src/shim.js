@@ -1,34 +1,24 @@
-function ShimMain() {
+function init() {
 
     // index.html
     ServerURL = "foobar";
-	CommonIsMobile = CommonDetectMobile();
-	TranslationLoad();
-	DrawLoad();
-	AssetLoadAll();
-	// CommandsLoad();
-	// CommonSetScreen("Character", "Login");
-	ControllerActive = false;
-	// ServerInit();
+    CommonIsMobile = CommonDetectMobile();
+    TranslationLoad();
+    DrawLoad();
+    AssetLoadAll();
+    ControllerActive = false;
+    let _TextLoad = TextLoad; // Avoid nonexistant text query
+    TextLoad = () => {};
     CommonSetScreen("KinkyDungeon", "KinkyDungeonMain");
-	MainRun(0);
+    TextLoad = _TextLoad;
+    MainRun(0);
 
     // LoginLoad
     Character = [];
-	CharacterNextId = 1;
-	CharacterReset(0, "Female3DCG");
-	CharacterLoadCSVDialog(Player);
-	// LoginCharacter = CharacterLoadNPC("NPC_Login");
-	// LoginDoNextThankYou();
-	// LoginStatusReset();
-	// LoginErrorMessage = "";
-	// if (LoginCredits == null) CommonReadCSV("LoginCredits", CurrentModule, CurrentScreen, "GameCredits");
-	ActivityDictionaryLoad();
-	// OnlneGameDictionaryLoad();
-	// ElementCreateInput("InputName", "text", "", "20");
-	// ElementCreateInput("InputPassword", "password", "", "20");
-	// TextPrefetch("Room", "Mainhall");
-	// LoginTextCacheUnsubscribeCallback = TextScreenCache.onRebuild(LoginUpdateMessage);
+    CharacterNextId = 1;
+    CharacterReset(0, "Female3DCG");
+    CharacterLoadCSVDialog(Player);
+    ActivityDictionaryLoad();
 
     Player.ArousalSettings = {};
     Player.ArousalSettings.VFXFilter = "VFXFilterHeavy";
@@ -58,11 +48,11 @@ function ShimMain() {
 
 // Useful for debugging
 trace = function(f) {
-	return function(...args) {
-		console.log(new Error(f.name));
-		console.log(...args);
-		f(...args);
-	}
+    return function(...args) {
+        console.log(new Error(f.name));
+        console.log(...args);
+        f(...args);
+    }
 }
 
 // More misc. shims
@@ -89,8 +79,6 @@ ChatRoomCharacterItemUpdate = () => {};
 
 AsylumGGTSControlItem = () => false;
 
-ArcadeKinkyDungeonEnd = () => {
-    console.log('End? Really?');
-}
+ArcadeKinkyDungeonEnd = () => { console.log('Nope'); }
 
 KinkyDungeonMultiplayerUpdate = () => {};
