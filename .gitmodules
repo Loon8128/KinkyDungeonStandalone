@@ -1,5 +1,4 @@
 [submodule "Bondage-Club"]
 	path = Bondage-Club
 	url = https://github.com/Ada18980/Bondage-College
-[submodule "Bondage-College"]
 	shallow = true

@@ -30,9 +30,39 @@ function ShimMain() {
 	// TextPrefetch("Room", "Mainhall");
 	// LoginTextCacheUnsubscribeCallback = TextScreenCache.onRebuild(LoginUpdateMessage);
 
+    Player.ArousalSettings = {};
+    Player.ArousalSettings.VFXFilter = "VFXFilterHeavy";
+    Player.OnlineSharedSettings = {};
+    Player.OnlineSharedSettings.ItemsAffectExpressions = true
 
-    CharacterAppearanceSetDefault(Player);    
+    CharacterAppearanceSetDefault(Player);
+    CurrentCharacter = null; 
     MiniGameStart("KinkyDungeon", 1, "ArcadeKinkyDungeonEnd");
+
+    // Default keybindings, these are initialized as part of the Player
+    KinkyDungeonKeybindings = {
+        Down: 115,
+        DownLeft: 122,
+        DownRight: 99,
+        Left: 97,
+        Right: 100,
+        Spell1: 49,
+        Spell2: 50,
+        Spell3: 51,
+        Up: 119,
+        UpLeft: 113,
+        UpRight: 101,
+        Wait: 120,
+    };
+}
+
+// Useful for debugging
+trace = function(f) {
+	return function(...args) {
+		console.log(new Error(f.name));
+		console.log(...args);
+		f(...args);
+	}
 }
 
 // More misc. shims
@@ -53,7 +83,19 @@ PrivateCharacter = [];
 
 ChatRoomChatLog = [];
 ChatRoomCharacterUpdate = () => {};
+ChatRoomCharacterItemUpdate = () => {};
 
 AsylumGGTSControlItem = () => false;
+/*
+_InventoryExpressionTriggerApply = InventoryExpressionTriggerApply
+InventoryExpressionTriggerApply = function(C, expressions) {
+    if (typeof C.OnlineSharedSettings === 'undefined') C.OnlineSharedSettings = {};
+    if (typeof C.OnlineSharedSettings.ItemsAffectExpressions === 'undefined') C.OnlineSharedSettings.ItemsAffectExpressions = true;
+    _InventoryExpressionTriggerApply(C, expressions);
+}*/
+
+ArcadeKinkyDungeonEnd = () => {
+    console.log('End? Really?');
+}
 
 KinkyDungeonMultiplayerUpdate = () => {};
