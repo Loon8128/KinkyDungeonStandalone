@@ -70,7 +70,6 @@ ServerAccountUpdate = {
     QueueData: () => {}
 };
 
-ArcadeDeviousChallenge = true;
 PrivateCharacter = [];
 
 ChatRoomChatLog = [];
@@ -79,6 +78,7 @@ ChatRoomCharacterItemUpdate = () => {};
 
 AsylumGGTSControlItem = () => false;
 
+ArcadeDeviousChallenge = true;
 ArcadeKinkyDungeonEnd = () => { console.log('Nope'); }
 
 KinkyDungeonMultiplayerUpdate = () => {};
