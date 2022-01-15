@@ -84,7 +84,7 @@
 
             let styleSrc = await query('CSS/Styles.css');
             let style = document.createElement('style');
-            style.innerHTML = styleSrc;
+            style.innerHTML = styleSrc.responseText;
             document.head.appendChild(style);
 
             let sources = await Promise.all(sourceScripts.map(query));
