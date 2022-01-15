@@ -24,6 +24,8 @@ function init() {
     Player.ArousalSettings.VFXFilter = "VFXFilterHeavy";
     Player.OnlineSharedSettings = {};
     Player.OnlineSharedSettings.ItemsAffectExpressions = true
+    Player.AudioSettings = {};
+    Player.AudioSettings.Volume = 1;
 
     CharacterAppearanceSetDefault(Player);
     CurrentCharacter = null; 
