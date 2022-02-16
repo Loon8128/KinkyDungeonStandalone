@@ -1,5 +1,5 @@
 {
-  "name": "kinkydungeonshim",
+  "name": "kinky-dungeon-standalone",
   "version": "1.0.0",
   "description": "",
   "main": "index.html",
@@ -7,7 +7,7 @@
     "main": "npx http-server"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "http-server": "^14.0.0"
   }
