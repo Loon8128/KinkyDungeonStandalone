@@ -1,5 +1,4 @@
 function init() {
-
     // index.html
     ServerURL = "foobar";
     CommonIsMobile = CommonDetectMobile();
@@ -33,28 +32,27 @@ function init() {
 
     // Default keybindings, these are initialized as part of the Player
     KinkyDungeonKeybindings = {
-        Down: 115,
-        DownLeft: 122,
-        DownRight: 99,
-        Left: 97,
-        Right: 100,
-        Spell1: 49,
-        Spell2: 50,
-        Spell3: 51,
-        Up: 119,
-        UpLeft: 113,
-        UpRight: 101,
-        Wait: 120,
+        Down: "KeyS",
+        DownLeft: "KeyZ",
+        DownRight: "KeyC",
+        Left: "KeyA",
+        Right: "KeyD",
+        Skip: "Space",
+        Spell1: "Digit1",
+        Spell2: "Digit2",
+        Spell3: "Digit3",
+        Spell4: "Digit4",
+        Spell5: "Digit5",
+        Up: "KeyW",
+        UpLeft: "KeyQ",
+        UpRight: "KeyE",
+        Wait: "KeyX",
     };
-}
-
-// Useful for debugging
-trace = function(f) {
-    return function(...args) {
-        console.log(new Error(f.name));
-        console.log(...args);
-        f(...args);
+    if (localStorage.getItem("KinkyDungeonKeybindings") && JSON.parse(localStorage.getItem("KinkyDungeonKeybindings"))) {
+        KinkyDungeonKeybindings = JSON.parse(localStorage.getItem("KinkyDungeonKeybindings"));
     }
+
+    GLDrawLoad(); // Normally invoked from window.onload
 }
 
 // More misc. shims
