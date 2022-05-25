@@ -6,9 +6,11 @@
   "scripts": {
     "main": "npx http-server"
   },
-  "author": "",
+  "private": true,
+  "author": "Loon8128",
   "license": "MIT",
-  "dependencies": {
-    "http-server": "^14.0.0"
+  "dependencies": {},
+  "devDependencies": {
+    "http-server": "^14.1.0"
   }
 }
