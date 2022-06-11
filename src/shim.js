@@ -6,7 +6,7 @@ function init() {
     DrawLoad();
     AssetLoadAll();
     ControllerActive = false;
-    let _TextLoad = TextLoad; // Avoid nonexistant text query
+    let _TextLoad = TextLoad; // Avoid nonexistent text query
     TextLoad = () => {};
     CommonSetScreen("KinkyDungeon", "KinkyDungeonMain");
     TextLoad = _TextLoad;
@@ -77,6 +77,7 @@ ChatRoomCharacterUpdate = () => {};
 ChatRoomCharacterItemUpdate = () => {};
 
 AsylumGGTSControlItem = () => false;
+AsylumGGTSCharacterName = () => "";
 
 ArcadeDeviousChallenge = true;
 ArcadeKinkyDungeonEnd = () => { console.log('Nope'); }
