@@ -31,6 +31,7 @@ function isExcludedInKD(path) {
 
 
 function remap(url) {
+    // https://docs.gitlab.com/ee/api/repository_files.html#get-raw-file-from-repository
     // gitgud.io is configured to not accept cross origin requests, so we have to use the files API instead
     // Since we use encodeURLComponent, audio seems to have an issue with putting // in the file path. This has to be resolved as a URL accepts that fine, but a encoded URI does not.
     url = url.replace('//', '/');
@@ -90,6 +91,7 @@ async function load() {
     updateProgress('Checking Version', 1, 1);
     
     project = params.has('project') ? params.get('project') : PROJECT;
+    branch = params.has('branch') ? params.get('branch') : BRANCH;
 
     if (params.has('commit')) {
         commit = params.get('commit');
@@ -99,7 +101,7 @@ async function load() {
         // https://docs.gitlab.com/ee/api/commits.html#list-repository-commits
         // https://gitgud.io/api/v4/projects/18157/repository/commits?per_page=1&page=1
         // Supports pagination, so we only need the latest
-        let api_url = `https://gitgud.io/api/v4/projects/${project}/repository/commits?per_page=1&page=1`;
+        let api_url = `https://gitgud.io/api/v4/projects/${project}/repository/commits?per_page=1&page=1&ref_name=${branch}`;
         let res;
         try {
             res = await query(api_url, false);
@@ -238,9 +240,6 @@ function loadKD() {
     patch(AudioPlayInstantSound, {
         'audio.src =': 'audio.crossOrigin = "Anonymous";\naudio.src ='
     });
-
-    // todo: audio loading and playing seems to be broken completely. Not sure why
-    //AudioPlayInstantSound = () => {};
     
     // Bootstrap BC enough to be able to run KD
     KinkyDungeonMainRun = () => {};
