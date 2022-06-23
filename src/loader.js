@@ -194,8 +194,6 @@ async function load() {
         // Processing that must be immediately after specific scripts
         if (src === 'Scripts/Common.js') {
             loadAfterCommon();
-        } else if (src === 'Scripts/Audio.js') {
-            loadAfterAudio();
         } else if (src === 'Scripts/ImageCache.js') { // Future proof, for when ImageCache gets re-added
             loadAfterImageCache();
         }
@@ -214,12 +212,6 @@ async function load() {
 function loadAfterCommon() {
     patch(CommonGet, {
         'CommonGet(Path, Callback, RetriesLeft) {': 'CommonGet(Path, Callback, RetriesLeft) {\nPath = remap(Path);'
-    });
-}
-
-function loadAfterAudio() {
-    patch(AudioPlayInstantSound, {
-        'audio.src = src;': 'audio.crossOrigin = "Anonymous";\naudio.src = remap(src);'
     });
 }
 
