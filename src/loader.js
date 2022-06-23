@@ -1,5 +1,6 @@
 // Project id for BondageProjects/BondageCollege
 const PROJECT = '18180';
+const BRANCH = 'master';
 
 let project = PROJECT;
 let commit;
