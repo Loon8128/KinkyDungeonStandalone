@@ -27,7 +27,9 @@ LoseFocus = () => {};
 function isExcludedInKD(path) {
     return (path.startsWith('Screens/MiniGame') && !path.startsWith('Screens/MiniGame/KinkyDungeon'))
         || path.startsWith('Screens/Cutscene')
-        || path.startsWith('Screens/Room');
+        || path.startsWith('Screens/Room')
+        || path.startsWith('Scripts/lib/jquery')
+        || path.startsWith('Scripts/lib/chess');
 }
 
 
@@ -35,7 +37,7 @@ function remap(url) {
     // https://docs.gitlab.com/ee/api/repository_files.html#get-raw-file-from-repository
     // gitgud.io is configured to not accept cross origin requests, so we have to use the files API instead
     // Since we use encodeURLComponent, audio seems to have an issue with putting // in the file path. This has to be resolved as a URL accepts that fine, but a encoded URI does not.
-    url = url.replace('//', '/');
+    url = url.replaceAll(/\/+/g, '/');
     return `https://gitgud.io/api/v4/projects/${project}/repository/files/BondageClub%2F${encodeURIComponent(url)}/raw?ref=${commit}`;
 }
 
@@ -92,7 +94,7 @@ async function load() {
     updateProgress('Checking Version', 1, 1);
     
     project = params.has('project') ? params.get('project') : PROJECT;
-    branch = params.has('branch') ? params.get('branch') : BRANCH;
+    const branch = params.has('branch') ? params.get('branch') : BRANCH;
 
     if (params.has('commit')) {
         commit = params.get('commit');
@@ -133,9 +135,11 @@ async function load() {
             continue;
         }
 
-        let asyncScriptMatch = /<script src="([\w\d/._-]+)"><\/script>/.exec(line);
+        let asyncScriptMatch = /<script async src="([\w\d/._-]+)"><\/script>/.exec(line);
         if (asyncScriptMatch !== null) {
-            sourceScripts.push(asyncScriptMatch[1]);
+            if (!isExcludedInKD(asyncScriptMatch[1])) {
+                sourceScripts.push(asyncScriptMatch[1]);
+            }
             continue;
         }
 
@@ -180,8 +184,8 @@ async function load() {
     let sourceScriptNames = sourceScripts;
     sourceScripts = sourceScripts.map(url => query(url));
     updateProgress('Loading Scripts', 0, sourceScripts.length);
-    for (const style of sourceScripts) {
-        style.then(s => {
+    for (const script of sourceScripts) {
+        script.then(s => {
             scriptsLoaded++;
             updateProgress('Loading Scripts', scriptsLoaded, sourceScripts.length);
         });
@@ -239,7 +243,7 @@ function loadKD() {
     });
 
     patch(AudioPlayInstantSound, {
-        'audio.src =': 'audio.crossOrigin = "Anonymous";\naudio.src ='
+        'audio.src = src': 'audio.crossOrigin = "Anonymous";\naudio.src = remap(src)'
     });
     
     // Bootstrap BC enough to be able to run KD
