@@ -3,7 +3,8 @@ const PROJECT = '18180';
 const BRANCH = 'master';
 
 let project = PROJECT;
-let commit;
+let commit = null;
+let localEnv = null;
 
 
 // Loading bar
@@ -34,6 +35,10 @@ function isExcludedInKD(path) {
 
 
 function remap(url) {
+    if (localEnv !== null) {
+        return `${localEnv}/BondageClub/${url}`;
+    }
+    
     // https://docs.gitlab.com/ee/api/repository_files.html#get-raw-file-from-repository
     // gitgud.io is configured to not accept cross origin requests, so we have to use the files API instead
     // Since we use encodeURLComponent, audio seems to have an issue with putting // in the file path. This has to be resolved as a URL accepts that fine, but a encoded URI does not.
@@ -96,9 +101,12 @@ async function load() {
     project = params.has('project') ? params.get('project') : PROJECT;
     const branch = params.has('branch') ? params.get('branch') : BRANCH;
 
-    if (params.has('commit')) {
+    if (params.has('localhost')) {
+        localEnv = `http://localhost:${params.get('localhost')}`;
+        console.log(`Loading from local environment at ${localEnv}`);
+    } else if (params.has('commit')) {
         commit = params.get('commit');
-        console.log('Using commit: ' + commit);
+        console.log(`Loading from commit: ${commit} on project ${project}`);
     } else {
         // gitgud.io is running on gitlab, their API will do
         // https://docs.gitlab.com/ee/api/commits.html#list-repository-commits
